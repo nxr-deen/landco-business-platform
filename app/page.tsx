@@ -103,7 +103,7 @@ export default function Home() {
               </div>
               <div className="mx-auto aspect-video overflow-hidden rounded-xl border bg-muted/50 object-cover shadow-xl lg:order-last">
                 <img
-                  src="/placeholder.svg?height=600&width=800"
+                  src="/home.jpg"
                   alt="Dashboard Preview"
                   width={800}
                   height={600}
