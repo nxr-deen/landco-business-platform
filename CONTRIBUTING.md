@@ -27,9 +27,9 @@ We use GitHub to host code, to track issues and feature requests, as well as acc
 
 ## Coding Style
 
-* Use the existing code style as a guide
-* Run linting before submitting your code
-* Write tests for new functionality
+- Use the existing code style as a guide
+- Run linting before submitting your code
+- Write tests for new functionality
 
 ## License
 
