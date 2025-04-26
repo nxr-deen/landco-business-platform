@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String
+  role          String    @default("USER")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  subscription  Subscription?
+  customers     Customer[]
+  supportTickets SupportTicket[]
+}
+
+model Subscription {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  user          User      @relation(fields: [userId], references: [id])
+  plan          String    @default("FREE")
+  status        String    @default("ACTIVE")
+  startDate     DateTime  @default(now())
+  endDate       DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Customer {
+  id            String    @id @default(cuid())
+  name          String
+  email         String
+  phone         String?
+  company       String?
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model SupportTicket {
+  id            String    @id @default(cuid())
+  title         String
+  description   String
+  status        String    @default("OPEN")
+  userId        String
+  user          User      @relation(fields: [userId], references: [id])
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model FAQ {
+  id            String    @id @default(cuid())
+  question      String
+  answer        String
+  category      String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// Constants for string values (SQLite doesn't support enums)
+// Role: USER, ADMIN
+// Plan: FREE, STARTER, PROFESSIONAL, ENTERPRISE
+// Status: ACTIVE, INACTIVE, CANCELLED, TRIAL
+// TicketStatus: OPEN, IN_PROGRESS, RESOLVED, CLOSED
