@@ -21,8 +21,8 @@ A modern business platform built with Next.js, Prisma, and PostgreSQL.
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd landco
+git clone https://github.com/nxr-deen/landco-business-platform.git
+cd landco-business-platform
 ```
 
 2. Install dependencies:
